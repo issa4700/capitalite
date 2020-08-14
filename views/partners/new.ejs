@@ -1,0 +1,22 @@
+<h2>Add new Partner</h2>
+<% if (locals.errorMessage !=null) { %>
+<%- include('../partials/errorMessage.ejs') %>
+<% } %>
+<form action="/partners" method="POST">
+    <div>
+        <label>Username</label>
+        <input type="text" name="username" placeholder="Username" required>
+
+        <label>Name</label>
+        <input type="text" name="displayName" placeholder="Name" required>
+
+        <label>Initial Units</label>
+        <input type="number" name="unitsHeld" min="0" required>
+
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Password" required>
+    </div>
+
+    <a href="/partners">Cancel</a>
+    <button type="submit">Create</button>
+</form>

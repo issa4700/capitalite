@@ -1,0 +1,14 @@
+<h1>All Partners</h1>
+Total partners: <%= partners.length %> <br />
+Aggregate units: <%= totalUnits %><br />
+<div>
+    <a href="/partners/new" class="">New Partner</a>
+</div>
+<hr />
+<% partners.forEach(partner => { %>
+    <li>
+        <a href="/partners/<%= partner.username %>">
+            <%= partner.displayName %>
+        </a>
+    </li>
+<% }); %>

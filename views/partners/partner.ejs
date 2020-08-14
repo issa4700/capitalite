@@ -1,0 +1,9 @@
+<h1><%= partner.displayName %></h1>
+Date Joined: <%= partner.dateJoined.toISOString().split('T')[0] %> <br />
+Last Activity: <%= partner.dateModified.toISOString().split('T')[0] %> <br />
+Username: <%= partner.username %> <br />
+Units Held: <%= partner.unitsHeld %>
+
+<hr />
+
+<a href="/partners">Back</a>

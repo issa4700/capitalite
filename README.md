@@ -12,6 +12,7 @@ yarn start
 ```
 
 ## 🗄 Database Schema
+```
 portfolio ::
 userID => users._id
 stockExchange
@@ -37,10 +38,10 @@ userID => users._id
 trxDate
 trxType
 amountUnits
-
+```
 
 ## 🛠 Configuration
 The configuration for the server can be found in the ```.env``` file located in the root of the server's directory.
 
 ## 🙏 OSS used 
-* [https://github.com/estevanmaito/windmill-dashboard](Windmill Dashboard Theme)
+* [Windmill Dashboard Theme](https://github.com/estevanmaito/windmill-dashboard)

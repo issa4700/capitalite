@@ -1,0 +1,35 @@
+<div class="container">
+    <h1 class="text-4xl" style="text-align: center;">All Trades</h1>
+    <div class="bg-gray-200 my-6 flex p-4 rounded justify-between items-center">
+        <p class="">Total trading fees: <span class="currency"><%= totalFees %></span> </p>
+        <div class="">
+            <a class="rounded bg-white px-4 py-2 justify-end shadow hover:border-green-500" href="trades/new">Add trade</a>
+        </div>
+    </div>
+    <table class="w-full">
+        <thead>
+            <tr class="bg-white px-6 py-4">
+                <th>Buy / Sell</th>
+                <th>Date</th>
+                <th>Ticker</th>
+                <th>Amount Shares</th>
+                <th>Average Fill Price</th>
+                <th>Fees</th>
+                <th>Gross Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% trades.forEach(trade => { %>
+                <tr class="pt-2">
+                    <td><%= trade.type.toUpperCase() %></td>
+                    <td><%= trade.trxDate.toISOString().split('T')[0] %></td>
+                    <td><%= trade.ticker %></td>
+                    <td><%= trade.amountShares %></td>
+                    <td class="currency"><%= trade.avgPrice %></td>
+                    <td class="currency"><%= trade.trxFees %></td>
+                    <td class="currency"><%= trade.grossAmount %></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</div>

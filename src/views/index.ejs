@@ -1,0 +1,118 @@
+<h1 class="text-3xl pb-6">Stonk Capital Investment Fund</h1>
+<div class=" grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+    <!-- Portfolio value -->
+    <div class="max-w-sm rounded overflow-hidden bg-white shadow-xl px-8 py-4 ">
+        <div class="text-3xl">
+            <span class="currency"><%= aum %></span>
+        </div>
+        <div class="">
+            <div class="font-thin text-xs -mt-1 mb-1 uppercase">Assets Under Management</div>
+        </div>
+        
+    </div>
+    
+    <div class="max-w-sm rounded overflow-hidden bg-white shadow-xl px-8 py-4 ">
+        <div class="text-3xl">
+            <span class="currency"><%= portfolioValue %></span>
+        </div>
+        <div class="">
+            <div class="font-thin text-xs -mt-1 mb-1 uppercase">Portfolio Value</div>
+        </div>
+    </div>
+    
+   
+
+    <div class="max-w-sm rounded overflow-hidden bg-white shadow-xl px-8 py-4 ">
+        <div class="text-3xl">
+            <span></span>
+            <span class="ml-auto text-right currency">
+                <%= unitPrice %>
+            </span>
+        </div>
+        <div class="">
+            <div class="font-thin text-xs -mt-1 mb-1 uppercase">Unit Price</div>
+        </div>
+        
+    </div>
+
+    <div class="max-w-sm rounded overflow-hidden bg-white shadow-xl px-8 py-4 ">
+        <div class="text-3xl text-red-500">
+            <span></span>
+            <span class="ml-auto text-right percentage">
+                <%= capGrowth %>
+            </span>
+        </div>
+        <div class="">
+            <div class="font-thin text-xs -mt-1 mb-1 uppercase">Total Return</div>
+        </div>        
+    </div>
+</div>
+
+<div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="flex flex-col">
+        <div class="flex justify-between items-center">
+            <h2 class="text-xl">Current Holdings</h2>
+            <a class="uppercase text-xs hover:text-teal-500" href="">View All</a>
+        </div>
+
+        <% portfolio.forEach(stock => { %>
+        <div class="flex flex-row justify-between items-center mt-4 ml-1">
+            <div>
+                <h3 class="font-semibold"><%= stock.name %></h3>
+                <p>KLSE: <%= stock.symbol %> (<%= stock.id %>)</p>
+            </div>
+            <div class="text-right text-gray-600">
+                <p class="currency text-gray-700 text-base"><%= stock.currentVal %></p>
+                <p class="percentage"><%= stock.change.percentage %></p>
+            </div>
+        </div>
+        <% }); %>
+    </div>
+    <div>
+        <div class="clearfix">
+            <h2 class="float-left text-lg">Unit Value over Time</h2>
+            <span class="float-right text-sm font-thin bg-gray-200 text-gray-600 px-4 rounded-full">Last 7 Days</span>
+        </div>
+        <div id='chart'></div>
+    </div>    
+</div>
+
+<div class="mt-10 text-center">
+    <p>All data shown has a minimum delay of 15 minutes.</p>
+    <p>Total return is calculated at the end of day (EOD) and may not reflect an accurate figure untile market close.</p>
+    <p>Stock quotes are retrieved from 
+        <a class='hover:text-teal-600' href="https://klse.i3investor.com/index.jsp">I3investor</a> and 
+        <a class='hover:text-teal-600' href="https://eodhistoricaldata.com/r/?ref=HDX43NON">EOD Historical Data</a>
+    </p>
+</div>
+
+<script>
+    var options = {
+            series: [{
+                name: 'Stonk Capital',
+                data: [521.52,526.49,521.88,521.05,486.05,495.88,480.37]
+            }],
+            chart: {
+                height: 350,
+                type: 'area'
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                curve: 'smooth'
+            },
+            xaxis: {
+                type: 'datetime',
+                categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
+            },
+            tooltip: {
+                x: {
+                    format: 'dd/MM/yy HH:mm'
+                },
+            },
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+</script>

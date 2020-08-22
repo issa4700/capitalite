@@ -1,0 +1,29 @@
+<div class="container">
+    <h2>Add transaction</h2>
+    <% if (locals.errorMessage !=null) { %>
+    <%- include('../partials/errorMessage.ejs') %>
+    <% } %>
+    <form action="/ledger" method="POST">
+        <div>
+            <label>Transaction Type</label>
+            <select name="trxType">
+                <option value="deposit">Deposit</option>
+                <option value="withdraw">Withdraw</option>
+            </select>
+    
+            <label for="trxDate">Transaction Date</label>
+            <input type="date" name="trxDate">
+    
+    
+            <label>Amount</label>
+            <input type="number" step="0.01" name="grossAmount" min="0" placeholder="11.75" required>
+    
+            <label>Comment</label>
+            <input type="text" name="comment" placeholder="Weekly deposit" maxlength="64" required>
+    
+        </div>
+    
+        <a href="/ledger">Cancel</a>
+        <button type="submit">Create</button>
+    </form>
+</div>

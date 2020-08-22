@@ -1,0 +1,31 @@
+<div class="container">
+    <h1 style="text-align: center;">All Transactions</h1>
+    <div>
+        <a href="ledger/new">Add Transaction</a>
+    </div>
+    <table class="u-full-width">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Comment</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% ledger.forEach(transaction => { %>
+            <tr>
+                <td><%= transaction.trxType.toUpperCase() %></td>
+                <td><%= transaction.trxDate.toISOString().split('T')[0] %></td>
+                <td><%= transaction.grossAmount.toFixed(2) %></td>
+                <td><%= transaction.comment %></td>
+                <td>
+                    <a href="">View</a>    
+                    <a href="">Delete</a>
+                </td>
+            </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</div>

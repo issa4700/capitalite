@@ -4,16 +4,22 @@ const expressLayouts = require('express-ejs-layouts')
 const bodyParser = require('body-parser')
 require('dotenv').config()
 
-//Routes
+//Routers
+const indexRouter = require('./routes/index')
 const partnersRouter = require('./routes/partners')
+const tradesRouter = require('./routes/trades')
+const ledgerRouter = require('./routes/ledger')
+const testRouter = require('./routes/test')
+const stockQuoteRouter = require('./routes/_stockQuote')
 
 app.set('view engine', 'ejs')
-app.set('views', __dirname + '/views')
+app.set('views', __dirname + '/src/views')
 app.set('layout', 'layouts/layout')
 
 app.use(expressLayouts)
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(express.static(__dirname + 'public'));
 
 // Database
 const mongoose = require('mongoose')
@@ -25,5 +31,10 @@ db.on('open', () => console.log(`Connected to Mongoose`))
 
 // Use routers
 app.use('/partners', partnersRouter)
+app.use('/trades', tradesRouter)
+app.use('/ledger', ledgerRouter)
+app.use('/test', testRouter)
+app.use('/stquote', stockQuoteRouter)
+app.use('/', indexRouter)
 
 app.listen(process.env.PORT || 3000)

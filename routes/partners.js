@@ -2,7 +2,6 @@ const express = require('express')
 const router = express.Router()
 const Partners = require('../models/partners')
 const bcrypt = require('bcrypt')
-const { count } = require('../models/partners')
 
 // Show all partners
 router.get('/', async (req, res) => {
@@ -27,6 +26,7 @@ router.get('/', async (req, res) => {
         }
 
         res.render('partners/index', {
+            pageTitle: "Partners",
             partners: partners,
             totalUnits: await getTotalUnits()
         })
@@ -40,7 +40,10 @@ router.get('/', async (req, res) => {
 
 // Display new author page
 router.get('/new', (req, res) => {
-    res.render('partners/new', { partners: new Partners() })
+    res.render('partners/new', { 
+        pageTitle: "Add new partner", 
+        partners: new Partners()
+    })
 })
 
 // Show specific author
@@ -48,7 +51,10 @@ router.get('/:username', async (req, res) => {
     try {
         const partner = await Partners.findOne({ username: req.params.username })
         if (partner != null) {
-            res.render('partners/partner', { partner: partner })
+            res.render('partners/partner', {
+                pageTitle: partner.displayName, 
+                partner: partner 
+            })
         } else {
             res.redirect('/partners')
         }
@@ -65,6 +71,7 @@ router.post('/', async (req, res) => {
         if (partners.length > 0) {
             // User exists
             res.render('partners/new', {
+                pageTitle: "Error",
                 errorMessage: `Partner already exists!`
             })
         } else {

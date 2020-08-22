@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= pageTitle %> - Capitalite Portfolio Tracker</title>
+    <meta name="author" content="David Grzyb">
+    <meta name="description" content="">
+
+    <!-- Tailwind -->
+    <link href="/css/main.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script defer src="/js/main.js"></script>
+</head>
+
+<body class="bg-gray-100 flex antialiased">
+
+    
+
+    <div class="relative w-full flex flex-col h-screen overflow-y-hidden">
+        
+        <%- include('../partials/header.ejs') %>
+
+        <div class="w-full h-screen overflow-x-hidden border-t flex">
+            <%- include('../partials/sidebar.ejs') %>
+            <main class="w-full p-6 overflow-y-auto">
+                <div class="container mx-auto">
+                    <%- body %>
+                </div>
+
+            </main>
+        </div>
+        <%- include('../partials/footer.ejs') %>
+
+    </div>
+
+    <!-- AlpineJS -->
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">
+</body>
+
+</html>

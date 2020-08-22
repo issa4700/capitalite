@@ -5,7 +5,7 @@ const Trade = require('../models/trade')
 // Show all partners
 router.get('/', async (req, res) => {
     try {
-        const trades = await Trade.find({}).sort({trxDate: -1})
+        const trades = await Trade.find({}).sort({trxDate: 1})
         const totalFees = trades.reduce((acc, val) => acc + val.trxFees, 0)
 
         res.render('trades/index', {

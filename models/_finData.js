@@ -28,7 +28,7 @@ module.exports = async () => {
             let quote = quotes.find(s => s.ticker == stock._id)
             portfolio.push({
                 id: stock._id,
-                symbol: quote.symbol,
+                ticker: quote.name,
                 name: quote.companyName,
                 shares: stock.amountShares,
                 currentVal: quote.stockPrice * stock.amountShares,

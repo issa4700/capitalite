@@ -11,34 +11,8 @@ yarn
 yarn start
 ```
 
-## 🗄 Database Schema
-```
-portfolio ::
-userID => users._id
-stockExchange
-tickerID
-trxType (B/S)
-trxDate
-sharePrice
-amountShares
-trxFees
-
-partners ::
-_id
-username
-password
-Name
-
-Exchanges ::
-_id
-name
-
-insiderTrx ::
-userID => users._id
-trxDate
-trxType
-amountUnits
-```
+## Todo
+[] Change transactions form to use gross-amount to calculate avg. fill price
 
 ## 🛠 Configuration
 The configuration for the server can be found in the ```.env``` file located in the root of the server's directory.
